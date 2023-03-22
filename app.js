@@ -70,6 +70,25 @@ let gameScore = { player: 0, computer: 0, tie: 0 };
 
 // ########## USER INTERFACE ##########
 
+// ---------- MODAL ----------
+document.addEventListener("DOMContentLoaded", showModal);
+
+const modal = document.querySelector(".modal");
+const modalWindow = document.querySelector(".modal-window");
+const modalButton = document.querySelector(".modal-window button");
+
+function showModal() {
+    modal.classList.add("show");
+    modalWindow.classList.add("show");
+    modalButton.addEventListener("click", hideModal);
+}
+
+function hideModal() {
+    modal.classList.remove("show");
+    modalWindow.classList.remove("show");
+}
+
+// ---------- GAME UI ----------
 const choiceButtons = document.querySelectorAll(".choice-container");
 
 choiceButtons.forEach(addClickFunction);

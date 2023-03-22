@@ -5,20 +5,25 @@
     padding: 0;
     font-family: "roboto", sans-serif;
     letter-spacing: var(--spacing);
-    /* outline: 1px solid rgba(255, 0, 255, 0.1); */
+    /* outline: 1px solid rgba(255, 0, 255, 0.5); */
 }
 :root {
     --color-white: #ffffff;
-    --color-grey-light: #f0f1f2;
+    --color-white-dim: #f0f1f2;
+    --color-white-dim2: #c2caeb;
     --color-grey-dark-1: #626a7b;
     --color-grey-dark-2: #525967;
     --color-grey-dark-3: #464c58;
+    --color-modal-bg: rgba(4, 5, 9, 0.9);
+    --color-modal-window: #2e3349;
+    --color-modal-border: #525e96;
     --color-red: #e9624b;
-    --color-red-darken: #af4938;
+    --color-red-dim: #af4938;
     --color-yellow: #f6bf4e;
-    --color-yellow-darken: #b88f3a;
+    --color-yellow-dim: #b88f3a;
     --color-blue: #548edc;
-    --color-blue-darken: #3f6aa5;
+    --color-blue-dim: #3f6aa5;
+    --color-cyan: #46b1da;
     --color-green: #92c15d;
     --color-green-darken: #6d9146;
     --size-button: 12rem;
@@ -27,16 +32,20 @@
     --size-header-height: 8rem;
     --size-sidebar-width: 6rem;
     --spacing: 1px;
+    --animation-modal: 0.3s;
 }
 body {
     background: var(--color-grey-dark-1);
     display: flex;
     height: 100vh;
 }
+body * {
+    box-sizing: border-box;
+}
 /* ########## FIRST LEVEL ########## */
 .header {
     height: var(--size-header-height);
-    background: var(--color-grey-light);
+    background: var(--color-white-dim);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,8 +80,9 @@ h1 {
     align-items: center;
 }
 
-/* BUTTONS POSITION */
+/* ########## BUTTONS POSITION ########## */
 .triangle {
+    box-sizing: content-box;
     padding: 2rem;
     background: url("./references/arrows_01.png");
     background-position: center;
@@ -109,7 +119,7 @@ h1 {
     left: calc(50% - var(--size-button) / 2);
 }
 
-/* BUTTONS SHAPE*/
+/* ########## BUTTONS SHAPE ########## */
 .choice {
     width: var(--size-button);
     height: var(--size-button);
@@ -120,6 +130,7 @@ h1 {
     cursor: pointer;
 }
 .choice-center {
+    box-sizing: content-box;
     width: var(--size-button-center);
     height: var(--size-button-center);
     border-radius: 50%;
@@ -130,7 +141,7 @@ h1 {
     overflow: hidden;
 }
 
-/* BUTTONS COLORS */
+/* ########## BUTTONS COLORS ########## */
 .choice-rock {
     background: var(--color-red);
 }
@@ -146,7 +157,7 @@ h1 {
     height: 110%;
 }
 
-/* BUTTONS ICONS */
+/* ########## BUTTONS ICONS ########## */
 .choice-rock .icon {
     background: url("./references/CartoonHandRock.png");
     background-position: center;
@@ -163,7 +174,7 @@ h1 {
     background-size: cover;
 }
 
-/* BUTTONS ANIMATION */
+/* ########## BUTTONS ANIMATION ########## */
 .choice:hover {
     animation: button-hover 0.8s infinite;
 }
@@ -180,7 +191,7 @@ h1 {
     }
 }
 
-/* SCORES */
+/* ########## SCORES ########## */
 .scores {
     margin-top: 1rem;
     margin-left: 2rem;
@@ -189,4 +200,61 @@ h1 {
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--color-grey-dark-1);
+}
+
+/* ########## MODAL ########## */
+.modal {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background: var(--color-modal-bg);
+    opacity: 0;
+    transition: all var(--animation-modal);
+    z-index: -1;
+}
+.modal.show {
+    opacity: 1;
+    z-index: 1;
+}
+.modal h1 {
+    margin-bottom: 1rem;
+}
+.modal-window {
+    height: 15rem;
+    width: 30rem;
+    background-color: var(--color-modal-window);
+    border: 1px solid var(--color-modal-border);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--color-white-dim2);
+
+    transform: translateY(calc(-50vh - 50%));
+    transition: all var(--animation-modal);
+}
+.modal-window.show {
+    transform: translateY(0);
+}
+.modal-window p {
+    font-weight: 300;
+}
+.modal-window button {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-blue-dim);
+    color: var(--color-white);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.modal-window button:hover {
+    background: var(--color-blue);
 }
