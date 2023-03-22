@@ -8,26 +8,26 @@ if the player chooses paper and the computer chooses scissors, the result will b
 */
 
 const resultMatrix = [
-    [0, 2, 1],
-    [1, 0, 2],
-    [2, 1, 0],
+    ["tie", "computer", "player"],
+    ["player", "tie", "computer"],
+    ["computer", "player", "tie"],
 ];
 
 const choiceDictionary = { rock: 0, paper: 1, scissors: 2 };
 
 const resultMessages = {
-    0: "Its a tie",
-    1: "The player wins",
-    2: "The computer wins",
+    tie: "Its a tie",
+    player: "The player wins",
+    computer: "The computer wins",
 };
 
-function getResultIndex(playerSelection, computerSelection) {
+function getRoundWinner(playerSelection, computerSelection) {
     const playerSelectionIndex = choiceDictionary[playerSelection];
     const computerSelectionIndex = choiceDictionary[computerSelection];
-    const resultIndex =
+    const roundWinner =
         resultMatrix[playerSelectionIndex][computerSelectionIndex];
 
-    return resultIndex;
+    return roundWinner;
 }
 
 function getResultMessage(resultIndex) {
@@ -41,25 +41,52 @@ function getComputerChoice() {
     return possibleChoices[randomChoice];
 }
 
-function playMatch(playerSelection, computerSelection) {
-    const resultIndex = getResultIndex(playerSelection, computerSelection);
-    const resultMessage = getResultMessage(resultIndex);
+function playRound(playerSelection, computerSelection) {
+    const roundWinner = getRoundWinner(playerSelection, computerSelection);
+    const resultMessage = getResultMessage(roundWinner);
 
-    console.log(`The player chooses ${playerSelection}.`);
-    console.log(`The computer chooses ${computerSelection}.`);
+    // console.log(`The player chooses ${playerSelection}.`);
+    // console.log(`The computer chooses ${computerSelection}.`);
 
-    if (resultIndex === 1) {
-        const choice1 = capitalizeString(playerSelection);
-        const choice2 = computerSelection;
-        console.log(`${choice1} beats ${choice2}.`);
-    } else if (resultIndex === 2) {
-        const choice1 = capitalizeString(computerSelection);
-        const choice2 = playerSelection;
-        console.log(`${choice1} beats ${choice2}.`);
-    }
+    // if (roundWinner === 1) {
+    //     const choice1 = capitalizeString(playerSelection);
+    //     const choice2 = computerSelection;
+    //     console.log(`${choice1} beats ${choice2}.`);
+    // } else if (roundWinner === 2) {
+    //     const choice1 = capitalizeString(computerSelection);
+    //     const choice2 = playerSelection;
+    //     console.log(`${choice1} beats ${choice2}.`);
+    // }
     console.log(resultMessage);
+
+    gameScore[roundWinner]++;
 }
 
 function capitalizeString(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+let gameScore = { player: 0, computer: 0, tie: 0 };
+
+// ########## USER INTERFACE ##########
+
+const choiceButtons = document.querySelectorAll(".choice-container");
+
+choiceButtons.forEach(addClickFunction);
+
+function addClickFunction(item) {
+    item.addEventListener("click", onPlayerClick);
+}
+function onPlayerClick(event) {
+    const playerChoice = event.currentTarget.dataset.choice;
+    playRound(playerChoice, getComputerChoice());
+    updateScoreboard();
+}
+
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+
+function updateScoreboard() {
+    playerScore.textContent = gameScore.player;
+    computerScore.textContent = gameScore.computer;
 }
