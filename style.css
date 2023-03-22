@@ -1,10 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap");
+
 * {
     margin: 0;
     padding: 0;
+    /* outline: 1px solid black; */
 }
 :root {
-    --color-white: #f0f1f2;
-    --color-grey-dark: #525967;
+    --color-white: #ffffff;
+    --color-grey-light: #f0f1f2;
+    --color-grey-dark-1: #626a7b;
+    --color-grey-dark-2: #525967;
+    --color-grey-dark-3: #464c58;
     --color-red: #e9624b;
     --color-red-darken: #af4938;
     --color-yellow: #f6bf4e;
@@ -16,21 +22,37 @@
     --size-button: 12rem;
     --size-button-center: 9rem;
     --size-triangle-base: 30rem;
+    --spacing: 1px;
 }
 body {
-    background: var(--color-grey-dark);
+    background: var(--color-grey-dark-1);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.container {
+.flex-container {
     width: 50vw;
     height: 80vh;
     background: var(--color-white);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.header {
+    height: 6rem;
+    background: var(--color-grey-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-grey-dark-3);
+    /* padding-left: 3rem; */
+}
+h1 {
+    font-family: "roboto", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: var(--spacing);
+    font-weight: 700;
 }
 /* BUTTONS COLORS */
 .choice-rock {
@@ -51,7 +73,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    cursor: pointer;
 }
 .choice-center {
     width: var(--size-button-center);
@@ -73,7 +95,22 @@ body {
 .triangle {
     width: var(--size-triangle-base);
     height: calc(var(--size-triangle-base) * 0.935);
-    position: relative;
+    min-width: var(--size-button * 2);
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex: 0 0 auto;
+}
+.choice-container {
+    flex: 0 0 50%;
+    min-width: var(--size-button);
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.choice-container:nth-child(3) {
+    flex-basis: 100%;
 }
 .choice-1 {
     top: 0;
