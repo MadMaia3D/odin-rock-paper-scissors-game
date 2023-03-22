@@ -1,3 +1,5 @@
+// ########## GAME LOGIC ##########
+
 /* 
 This matrix encodes the possible result of and a rock-paper-scissors game.
 0 means a tie, 1 player's victory, and 2 the computer's victory
@@ -45,18 +47,18 @@ function playRound(playerSelection, computerSelection) {
     const roundWinner = getRoundWinner(playerSelection, computerSelection);
     const resultMessage = getResultMessage(roundWinner);
 
-    // console.log(`The player chooses ${playerSelection}.`);
-    // console.log(`The computer chooses ${computerSelection}.`);
+    console.log(`You chose ${playerSelection}.`);
+    console.log(`The computer chose ${computerSelection}.`);
 
-    // if (roundWinner === 1) {
-    //     const choice1 = capitalizeString(playerSelection);
-    //     const choice2 = computerSelection;
-    //     console.log(`${choice1} beats ${choice2}.`);
-    // } else if (roundWinner === 2) {
-    //     const choice1 = capitalizeString(computerSelection);
-    //     const choice2 = playerSelection;
-    //     console.log(`${choice1} beats ${choice2}.`);
-    // }
+    if (roundWinner === "player") {
+        const choice1 = capitalizeString(playerSelection);
+        const choice2 = computerSelection;
+        console.log(`${choice1} beats ${choice2}.`);
+    } else if (roundWinner === "computer") {
+        const choice1 = capitalizeString(computerSelection);
+        const choice2 = playerSelection;
+        console.log(`${choice1} beats ${choice2}.`);
+    }
     console.log(resultMessage);
 
     gameScore[roundWinner]++;
