@@ -3,6 +3,8 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "roboto", sans-serif;
+    letter-spacing: var(--spacing);
     /* outline: 1px solid rgba(255, 0, 255, 0.1); */
 }
 :root {
@@ -22,8 +24,9 @@
     --size-button: 12rem;
     --size-button-center: 9rem;
     --size-triangle-base: 30rem;
+    --size-header-height: 8rem;
+    --size-sidebar-width: 6rem;
     --spacing: 1px;
-    --header-height: ;
 }
 body {
     background: var(--color-grey-dark-1);
@@ -32,20 +35,22 @@ body {
 }
 /* ########## FIRST LEVEL ########## */
 .header {
-    height: 6rem;
+    height: var(--size-header-height);
     background: var(--color-grey-light);
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    color: var(--color-grey-dark-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    color: var(--color-grey-dark-1);
 }
 h1 {
     text-align: center;
-    margin: 1.5rem auto;
-    font-family: "roboto", sans-serif;
     font-size: 1.5rem;
-    letter-spacing: var(--spacing);
     font-weight: 700;
+}
+.subtitle {
+    letter-spacing: 1px;
 }
 .flex-container {
     display: flex;
@@ -53,7 +58,8 @@ h1 {
     flex: 1;
 }
 .side-menu {
-    width: 12rem;
+    min-width: var(--size-sidebar-width);
+    width: var(--size-sidebar-width);
     background: var(--color-grey-dark-1);
 }
 .game-area {
@@ -176,8 +182,6 @@ h1 {
     margin-left: 2rem;
     display: flex;
     gap: 1rem;
-    font-family: "roboto", sans-serif;
-    letter-spacing: var(--spacing);
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--color-grey-dark-1);
