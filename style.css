@@ -3,7 +3,7 @@
 * {
     margin: 0;
     padding: 0;
-    /* outline: 1px solid black; */
+    /* outline: 1px solid rgba(255, 0, 255, 0.1); */
 }
 :root {
     --color-white: #ffffff;
@@ -23,72 +23,46 @@
     --size-button-center: 9rem;
     --size-triangle-base: 30rem;
     --spacing: 1px;
+    --header-height: ;
 }
 body {
     background: var(--color-grey-dark-1);
+    display: flex;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-.flex-container {
-    width: 50vw;
-    height: 80vh;
-    background: var(--color-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* ########## FIRST LEVEL ########## */
 .header {
     height: 6rem;
     background: var(--color-grey-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     color: var(--color-grey-dark-3);
-    /* padding-left: 3rem; */
 }
 h1 {
+    text-align: center;
+    margin: 1.5rem auto;
     font-family: "roboto", sans-serif;
     font-size: 1.5rem;
     letter-spacing: var(--spacing);
     font-weight: 700;
 }
-/* BUTTONS COLORS */
-.choice-rock {
-    background: var(--color-red);
-}
-.choice-paper {
-    background: var(--color-yellow);
-}
-.choice-scissors {
-    background: var(--color-blue);
-}
-
-/* BUTTONS SHAPE*/
-.choice {
-    width: var(--size-button);
-    height: var(--size-button);
-    border-radius: 50%;
+.flex-container {
     display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.side-menu {
+    width: 12rem;
+    background: var(--color-grey-dark-1);
+}
+.game-area {
+    background: var(--color-white);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-}
-.choice-center {
-    width: var(--size-button-center);
-    height: var(--size-button-center);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0.5rem var(--color-white) solid;
-    overflow: hidden;
-}
-
-.choice-center .icon {
-    width: 110%;
-    height: 110%;
 }
 
 /* BUTTONS POSITION */
@@ -125,21 +99,41 @@ h1 {
     left: calc(50% - var(--size-button) / 2);
 }
 
-/* BUTTONS ANIMATION */
-.choice:hover {
-    animation: button-hover 0.8s infinite;
+/* BUTTONS SHAPE*/
+.choice {
+    width: var(--size-button);
+    height: var(--size-button);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.choice-center {
+    width: var(--size-button-center);
+    height: var(--size-button-center);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5rem var(--color-white) solid;
+    overflow: hidden;
 }
 
-@keyframes button-hover {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-    }
+/* BUTTONS COLORS */
+.choice-rock {
+    background: var(--color-red);
+}
+.choice-paper {
+    background: var(--color-yellow);
+}
+.choice-scissors {
+    background: var(--color-blue);
+}
+
+.choice-center .icon {
+    width: 110%;
+    height: 110%;
 }
 
 /* BUTTONS ICONS */
@@ -157,4 +151,34 @@ h1 {
     background: url("./references/CartoonHandPaper.png");
     background-position: center;
     background-size: cover;
+}
+
+/* BUTTONS ANIMATION */
+.choice:hover {
+    animation: button-hover 0.8s infinite;
+}
+
+@keyframes button-hover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* SCORES */
+.scores {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    gap: 1rem;
+    font-family: "roboto", sans-serif;
+    letter-spacing: var(--spacing);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-grey-dark-1);
 }
