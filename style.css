@@ -73,8 +73,12 @@ h1 {
 
 /* BUTTONS POSITION */
 .triangle {
+    padding: 2rem;
+    background: url("./references/arrows_01.png");
+    background-position: center;
+    background-size: contain;
     width: var(--size-triangle-base);
-    height: calc(var(--size-triangle-base) * 0.935);
+    height: calc(var(--size-triangle-base) * 0.87);
     min-width: var(--size-button * 2);
     display: flex;
     align-items: flex-start;
