@@ -163,16 +163,19 @@ h1 {
     background: url("./resources/icon_hand_rock.png");
     background-position: center;
     background-size: cover;
+    transform: rotate(-20deg);
 }
 .choice-scissors .icon {
     background: url("./resources/icon_hand_scissors.png");
     background-position: center;
     background-size: cover;
+    transform: rotate(-20deg);
 }
 .choice-paper .icon {
     background: url("./resources/icon_hand_paper.png");
     background-position: center;
     background-size: cover;
+    transform: rotate(-20deg);
 }
 
 /* ########## BUTTONS ANIMATION ########## */
