@@ -15,7 +15,7 @@ const resultMatrix = [
 ];
 const resultMessages = {
     tie: "Its a tie",
-    player: "The player wins",
+    player: "You win",
     computer: "The computer wins",
 };
 const choiceDictionary = { rock: 0, paper: 1, scissors: 2 };
