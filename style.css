@@ -32,7 +32,8 @@
     --size-header-height: 8rem;
     --size-sidebar-width: 6rem;
     --spacing: 1px;
-    --animation-modal: 0.3s;
+    --animation-modal: 0.7s;
+    --animation-button: 0.8s;
 }
 body {
     background: var(--color-grey-dark-1);
@@ -176,7 +177,7 @@ h1 {
 
 /* ########## BUTTONS ANIMATION ########## */
 .choice:hover {
-    animation: button-hover 0.8s infinite;
+    animation: button-hover var(--animation-button) infinite;
 }
 
 @keyframes button-hover {
@@ -254,32 +255,37 @@ h1 {
     background: var(--color-blue);
 }
 /* ########## MODAL WECOME ########## */
-.welcome-screen {
+.welcome-text {
     height: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
-
-.welcome-screen p {
+.welcome-text.active {
+    display: flex;
+}
+.welcome-text p {
     font-weight: 300;
 }
-.welcome-screen h2 {
+.welcome-text h2 {
     margin-bottom: 1rem;
 }
 
 /* ########## MODAL SCORE ########## */
-.score-screen {
+.result-text {
     height: 100%;
     display: none;
     flex-direction: column;
     justify-content: space-between;
 }
-.score-screen.show {
+.result-text.active {
+    display: flex;
+}
+.result-text.show {
     display: flex;
 }
 
-.score-screen h2 {
+.result-text h2 {
     margin-bottom: -1rem;
 }

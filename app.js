@@ -8,20 +8,17 @@ the second level of the array (columns) represents the computer's choice of rock
 if both chooses rock for example, the result is stored in the index [0][0], which is 0, that represents a tie
 if the player chooses paper and the computer chooses scissors, the result will be [1][2], which is 2, a computer victory
 */
-
 const resultMatrix = [
     ["tie", "computer", "player"],
     ["player", "tie", "computer"],
     ["computer", "player", "tie"],
 ];
-
-const choiceDictionary = { rock: 0, paper: 1, scissors: 2 };
-
 const resultMessages = {
     tie: "Its a tie",
     player: "The player wins",
     computer: "The computer wins",
 };
+const choiceDictionary = { rock: 0, paper: 1, scissors: 2 };
 
 function getRoundWinner(playerSelection, computerSelection) {
     const playerSelectionIndex = choiceDictionary[playerSelection];
@@ -45,23 +42,34 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     const roundWinner = getRoundWinner(playerSelection, computerSelection);
+
+    gameScore[roundWinner]++;
+}
+
+function getRoundMessages(playerSelection, computerSelection) {
+    const roundWinner = getRoundWinner(playerSelection, computerSelection);
     const resultMessage = getResultMessage(roundWinner);
 
-    console.log(`You chose ${playerSelection}.`);
-    console.log(`The computer chose ${computerSelection}.`);
+    const playerChoice = `You chose ${playerSelection}`;
+    const computerChoice = `The computer chose ${computerSelection}`;
+    let beatMessage = "";
 
     if (roundWinner === "player") {
         const choice1 = capitalizeString(playerSelection);
         const choice2 = computerSelection;
-        console.log(`${choice1} beats ${choice2}.`);
+        beatMessage = `${choice1} beats ${choice2}`;
     } else if (roundWinner === "computer") {
         const choice1 = capitalizeString(computerSelection);
         const choice2 = playerSelection;
-        console.log(`${choice1} beats ${choice2}.`);
+        beatMessage = `${choice1} beats ${choice2}`;
     }
-    console.log(resultMessage);
 
-    gameScore[roundWinner]++;
+    return {
+        resultMessage: resultMessage,
+        playersChoice: playerChoice,
+        computersChoice: computerChoice,
+        beatMessage: beatMessage,
+    };
 }
 
 function capitalizeString(string) {
@@ -77,12 +85,16 @@ document.addEventListener("DOMContentLoaded", showModal);
 
 const modal = document.querySelector(".modal");
 const modalWindow = document.querySelector(".modal-window");
-const modalButton = document.querySelector(".welcome-screen button");
+const modalWelcomeText = document.querySelector(".welcome-text");
+const modalWelcomeButton = modalWelcomeText.querySelector("button");
+const modalResultText = document.querySelector(".result-text");
+const modalResultButton = modalResultText.querySelector("button");
+modalWelcomeButton.addEventListener("click", hideModal);
+modalResultButton.addEventListener("click", hideModal);
 
 function showModal() {
     modal.classList.add("show");
     modalWindow.classList.add("show");
-    modalButton.addEventListener("click", hideModal);
 }
 
 function hideModal() {
@@ -90,22 +102,41 @@ function hideModal() {
     modalWindow.classList.remove("show");
 }
 
+function updateModalResultText(resultMessages) {
+    modalWelcomeText.classList.remove("active");
+    modalResultText.classList.add("active");
+
+    const whoWon = modalResultText.children[0];
+    whoWon.textContent = resultMessages.resultMessage;
+
+    const choices = modalResultText.children[1];
+    choices.children[0].textContent = resultMessages.playersChoice;
+    choices.children[1].textContent = resultMessages.computersChoice;
+
+    const whatBeatsWhat = modalResultText.children[2];
+    whatBeatsWhat.textContent = resultMessages.beatMessage;
+}
+
 // ---------- GAME UI ----------
 const choiceButtons = document.querySelectorAll(".choice-container");
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
 
 choiceButtons.forEach(addClickFunction);
 
 function addClickFunction(item) {
     item.addEventListener("click", onPlayerClick);
 }
+
 function onPlayerClick(event) {
     const playerChoice = event.currentTarget.dataset.choice;
-    playRound(playerChoice, getComputerChoice());
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
+    const resultMessages = getRoundMessages(playerChoice, computerChoice);
+    updateModalResultText(resultMessages);
+    showModal();
     updateScoreboard();
 }
-
-const playerScore = document.querySelector(".player-score");
-const computerScore = document.querySelector(".computer-score");
 
 function updateScoreboard() {
     playerScore.textContent = gameScore.player;
