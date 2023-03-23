@@ -160,17 +160,17 @@ h1 {
 
 /* ########## BUTTONS ICONS ########## */
 .choice-rock .icon {
-    background: url("./references/CartoonHandRock.png");
+    background: url("./resources/icon_hand_rock.png");
     background-position: center;
     background-size: cover;
 }
 .choice-scissors .icon {
-    background: url("./references/CartoonHandScissors.png");
+    background: url("./resources/icon_hand_scissors.png");
     background-position: center;
     background-size: cover;
 }
 .choice-paper .icon {
-    background: url("./references/CartoonHandPaper.png");
+    background: url("./resources/icon_hand_paper.png");
     background-position: center;
     background-size: cover;
 }
