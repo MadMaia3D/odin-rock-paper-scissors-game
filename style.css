@@ -5,7 +5,7 @@
     padding: 0;
     font-family: "roboto", sans-serif;
     letter-spacing: var(--spacing);
-    /* outline: 1px solid rgba(255, 0, 255, 0.5); */
+    /* outline: 1px solid rgba(255, 0, 255, 0.5);    */
 }
 :root {
     --color-white: #ffffff;
@@ -210,17 +210,17 @@ h1 {
     align-items: center;
     inset: 0;
     background: var(--color-modal-bg);
-    opacity: 0;
     transition: all var(--animation-modal);
+    opacity: 0;
     z-index: -1;
 }
+
 .modal.show {
     opacity: 1;
     z-index: 1;
 }
-.modal h1 {
-    margin-bottom: 1rem;
-}
+
+/* ########## MODAL WINDOW ########## */
 .modal-window {
     height: 15rem;
     width: 30rem;
@@ -229,12 +229,8 @@ h1 {
     border-radius: 1rem;
     padding: 1.5rem 2rem;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
     color: var(--color-white-dim2);
+    text-align: center;
 
     transform: translateY(calc(-50vh - 50%));
     transition: all var(--animation-modal);
@@ -242,9 +238,7 @@ h1 {
 .modal-window.show {
     transform: translateY(0);
 }
-.modal-window p {
-    font-weight: 300;
-}
+
 .modal-window button {
     border: none;
     padding: 0.5rem 1rem;
@@ -255,6 +249,37 @@ h1 {
     transition: all 0.2s;
     cursor: pointer;
 }
+
 .modal-window button:hover {
     background: var(--color-blue);
+}
+/* ########## MODAL WECOME ########## */
+.welcome-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.welcome-screen p {
+    font-weight: 300;
+}
+.welcome-screen h2 {
+    margin-bottom: 1rem;
+}
+
+/* ########## MODAL SCORE ########## */
+.score-screen {
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.score-screen.show {
+    display: flex;
+}
+
+.score-screen h2 {
+    margin-bottom: -1rem;
 }

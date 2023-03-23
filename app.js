@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", showModal);
 
 const modal = document.querySelector(".modal");
 const modalWindow = document.querySelector(".modal-window");
-const modalButton = document.querySelector(".modal-window button");
+const modalButton = document.querySelector(".welcome-screen button");
 
 function showModal() {
     modal.classList.add("show");
